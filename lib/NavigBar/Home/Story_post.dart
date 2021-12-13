@@ -131,7 +131,7 @@ class _storypostState extends State<storypost> {
                                     color: Colors.white,
                                     fontWeight: FontWeight.w400,
                                     height: 0.8),
-                                hintText: "  Send message",
+                                hintText: " Send message",
                                 fillColor: Colors.black,
                               ),
                             ),
