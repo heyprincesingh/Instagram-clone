@@ -16,18 +16,27 @@ class storypost extends StatefulWidget {
 }
 
 class _storypostState extends State<storypost> {
+  double _width = 0;
+  double devicewidth = 0;
   @override
+
   void initState() {
+    Future.delayed(Duration(seconds: 0)).then((value) => _update());
     super.initState();
     Timer(
-        Duration(seconds: 15),
+        Duration(seconds: 6,milliseconds: 100),
             () => Navigator.pop(context)
     );
   }
-
+  double ?_update(){
+    setState(() {
+      _width = devicewidth;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     var device = MediaQuery.of(context).size;
+    devicewidth = device.width;
     return Scaffold(
       backgroundColor: Colors.black,
       body: SingleChildScrollView(
@@ -41,7 +50,7 @@ class _storypostState extends State<storypost> {
                 Positioned(
                   child: Container(
                     height: device.height * 0.87,
-                    width: device.width,
+                    width: devicewidth,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(8.0)),
                         shape: BoxShape.rectangle,
@@ -95,6 +104,27 @@ class _storypostState extends State<storypost> {
                   top: device.height * 0.028,
                   child: Icon(Icons.more_vert, size: 22),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Positioned(
+                      child: AnimatedContainer(
+                        duration: Duration(seconds: 6),
+                        color: Colors.white,
+                        width: _width,
+                        height: 2.5,
+                      )
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Positioned(
+                      child: Container(
+                        color: Colors.white38,
+                        width: _width,
+                        height: 2.5,
+                      )
+                  ),
+                )
               ],
             ),
             SizedBox(
@@ -137,7 +167,7 @@ class _storypostState extends State<storypost> {
                             ),
                           )),
                       Image.asset("images/send.png",
-                          height: 28, width: 28, color: Colors.white),
+                          height: 28, width: 28, color: Colors.white)
                     ],
                   )),
             )
