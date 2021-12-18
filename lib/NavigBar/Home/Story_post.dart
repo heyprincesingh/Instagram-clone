@@ -140,7 +140,7 @@ class _storypostState extends State<storypost> {
                     children: [
                       Container(
                           height: device.height * 0.053,
-                          width: device.height * 0.378,
+                          width: devicewidth * 0.85,
                           child: Material(
                             color: Colors.black,
                             child: TextField(
@@ -165,7 +165,8 @@ class _storypostState extends State<storypost> {
                                 fillColor: Colors.black,
                               ),
                             ),
-                          )),
+                          )
+                      ),
                       Image.asset("images/send.png",
                           height: 28, width: 28, color: Colors.white)
                     ],
