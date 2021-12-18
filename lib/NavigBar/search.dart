@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Search/Search_list.dart';
 
 class search extends StatelessWidget {
   const search({Key? key}) : super(key: key);
@@ -7,7 +8,7 @@ class search extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("Search"),
+        child: search_list(),
       ),
     );
   }

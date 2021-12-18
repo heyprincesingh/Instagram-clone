@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Favorite/Favorite_list.dart';
 import 'dart:convert';
 class favorite extends StatelessWidget {
   const favorite({Key? key}) : super(key: key);
@@ -6,7 +7,7 @@ class favorite extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Text("Favorite"))
+      body: favorite_list(),
     );
   }
 }
