@@ -2,19 +2,21 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+
 class search_list extends StatelessWidget {
   const search_list({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    int count = 2;
     var device = MediaQuery.of(context).size;
     return Scaffold(backgroundColor: Colors.black,
       body: FutureBuilder(
           future: DefaultAssetBundle.of(context).loadString("images/searchdata.json"),
           builder: (context, snapshot) {
             var myfeeddata = json.decode(snapshot.data.toString());
-            final length3x3 = myfeeddata?[0].length;
-            final length3x2 = myfeeddata?[1].length;
+            final length3x3 = myfeeddata?.length;
             if (myfeeddata == null) {
               return Center(
                 child: Text(
@@ -27,7 +29,7 @@ class search_list extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      height: device.height * 0.063,
+                      height: 60,
                       width: device.width,
                       child: Padding(
                         padding: const EdgeInsets.all(11),
@@ -38,11 +40,22 @@ class search_list extends StatelessWidget {
                             children: [
                               SizedBox(width: 13),
                               Icon(Icons.search),
-                              SizedBox(width: 10),
-                              Text("Search", style: TextStyle(
-                                  color: Colors.white60,
-                                  fontSize: 17,
-                                  fontWeight: FontWeight.w400),)
+                              SizedBox(width: 13),
+                              Expanded(
+                                child: TextFormField(
+                                  cursorColor: Colors.white,
+                                  decoration: InputDecoration(
+                                    focusedBorder: InputBorder.none,
+                                    enabledBorder: InputBorder.none,
+                                    hintStyle: TextStyle(
+                                        fontSize: 17,
+                                        color: Colors.white54,
+                                        fontWeight: FontWeight.w400,
+                                        ),
+                                    hintText: "Search",
+                                  ),
+                                )
+                              )
                             ],
                           ),
                           width: device.width,
@@ -55,31 +68,13 @@ class search_list extends StatelessWidget {
                       ),
                     ),
                     Expanded(
-                      child: ListView.builder(
-                          itemCount: 25,// length3x3,
-                          itemBuilder: (context, index) => Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                    child: Image.network(myfeeddata[0][index]["url"],fit: BoxFit.cover),
-                                    height: device.width / 3,
-                                    width: device.width / 3,
-                                  ),
-                                  Container(
-                                    child: Image.network(myfeeddata[0][index]["url"],fit: BoxFit.cover),
-                                    height: device.width / 3,
-                                    width: device.width / 3,
-                                  ),
-                                  Container(
-                                    child: Image.network(myfeeddata[0][index]["url"],fit: BoxFit.cover),
-                                    height: device.width / 3,
-                                    width: device.width / 3,
-                                  ),
-                                ],
-                              )
-                            ],
-                          )
+                      child: StaggeredGridView.countBuilder(
+                        staggeredTileBuilder: (index) => StaggeredTile.count(1, index%22==2 || index.isOdd && index%11==0 ? 2 : 1),
+                            crossAxisCount: 3,
+                            crossAxisSpacing: 4.0,
+                            mainAxisSpacing: 4.0,
+                            itemCount: length3x3,
+                            itemBuilder: (context,index) => Image.network(myfeeddata[index]["url"],fit: BoxFit.cover,),
                       ),
                     )
                   ],
@@ -91,95 +86,3 @@ class search_list extends StatelessWidget {
     );
   }
 }
-
-/*
-  Row R_2x2Grid(Size device,String link) {
-    return Row(
-        children: [
-          Column(
-            children: [
-              FeedBox_3x3(device,link),
-              FeedBox_3x3(device,link),
-            ],
-          ),
-          Column(
-            children: [
-              FeedBox_3x3(device,link),
-              FeedBox_3x3(device,link),
-            ],
-          ),
-          FeedBox_3x2(device)
-        ],
-      );
-  }
-
-  Row BoxGrid_2x2(Size device,String link) {
-    return Row(
-        children: [
-          Column(
-            children: [
-              FeedBox_3x3(device,link),
-              FeedBox_3x3(device,link),
-            ],
-          ),
-          Column(
-            children: [
-              FeedBox_3x3(device,link),
-              FeedBox_3x3(device,link),
-            ],
-          ),
-          Column(
-            children: [
-              FeedBox_3x3(device,link),
-              FeedBox_3x3(device,link),
-            ],
-          ),
-        ],
-      );
-  }
-
-  Row L_2x2Grid(Size device,String link) {
-    return Row(
-        children: [
-          FeedBox_3x2(device),
-          Column(
-            children: [
-              FeedBox_3x3(device,link),
-              FeedBox_3x3(device,link),
-            ],
-          ),
-          Column(
-            children: [
-              FeedBox_3x3(device,link),
-              FeedBox_3x3(device,link),
-            ],
-          ),
-        ],
-      );
-  }
-
-  Container FeedBox_3x2(Size device) {
-    return Container(
-            width: device.width / 3,
-            height: device.width / 1.5,
-            color: Colors.black45,
-            child: Padding(
-              padding: const EdgeInsets.all(1),
-              child: Image.network("https://upload.wikimedia.org/wikipedia/commons/8/8a/Millie_Bobby_Brown_Pandora_2020_27s.jpg",fit: BoxFit.fitHeight),
-            ),
-          );
-  }
-
-  Container FeedBox_3x3(Size device,String link) {
-    return Container(
-                width: device.width / 3,
-                height: device.width / 3,
-                color: Colors.black45,
-                child: Padding(
-                  padding: const EdgeInsets.all(1),
-                  child: Image.network("$link",fit: BoxFit.cover,),
-                ),
-              );
-  }
-}
-*/
