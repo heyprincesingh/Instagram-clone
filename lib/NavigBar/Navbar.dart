@@ -51,10 +51,11 @@ class _NavbarState extends State<Navbar> {
             title: Text("")
         ),
         BottomNavigationBarItem(
-            icon: CircleAvatar(
+            icon: Icon(Icons.person),
+        /*CircleAvatar(
               radius: 18,
               backgroundImage: AssetImage("images/profile.jpg"),
-            ),
+            ),*/
             title: Text("")
         ),
         ],
