@@ -10,6 +10,9 @@ class feedpost extends StatefulWidget {
   _feedpostState createState() => _feedpostState();
 }
 
+TransformationController controllerT = TransformationController();
+var initialControllerValue;
+
 class _feedpostState extends State<feedpost> {
   @override
   Widget build(BuildContext context) {
@@ -70,7 +73,16 @@ class _feedpostState extends State<feedpost> {
                       ],
                     ),
                   ),
-                  Container(
+                  InteractiveViewer(
+                    minScale: 0.5,
+                    maxScale: 3,
+                    transformationController: controllerT,
+                    onInteractionStart: (details){
+                      initialControllerValue = controllerT.value;
+                    },
+                    onInteractionEnd: (details){
+                      controllerT.value = initialControllerValue;
+                    },
                     child: Image.network("${widget.url}",fit: BoxFit.fitHeight,),
                   ),
                   Padding(padding: const EdgeInsets.only(left : 2.0),
