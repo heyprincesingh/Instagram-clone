@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
-
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class search_list extends StatelessWidget {
@@ -71,8 +70,8 @@ class search_list extends StatelessWidget {
                       child: StaggeredGridView.countBuilder(
                         staggeredTileBuilder: (index) => StaggeredTile.count(1, index%22==2 || index.isOdd && index%11==0 ? 2 : 1),
                             crossAxisCount: 3,
-                            crossAxisSpacing: 4.0,
-                            mainAxisSpacing: 4.0,
+                            crossAxisSpacing: 2,
+                            mainAxisSpacing: 2,
                             itemCount: length3x3,
                             itemBuilder: (context,index) => Image.network(myfeeddata[index]["url"],fit: BoxFit.cover,),
                       ),

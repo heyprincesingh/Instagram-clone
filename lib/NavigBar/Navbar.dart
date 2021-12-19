@@ -38,7 +38,12 @@ class _NavbarState extends State<Navbar> {
             title: Text("")
         ),
         BottomNavigationBarItem(
-            icon: Icon(Icons.ondemand_video_rounded),
+            activeIcon: Image.network("https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/instagram-reels.png",
+              color: Colors.white,
+              width: 26,height: 26,),
+            icon: Image.network("https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/instagram-reels.png",
+              color: Colors.white24,
+              width: 26,height: 26,),
             title: Text("")
         ),
         BottomNavigationBarItem(activeIcon: Icon(Icons.favorite),
