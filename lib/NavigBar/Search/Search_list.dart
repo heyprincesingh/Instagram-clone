@@ -80,13 +80,13 @@ class search_list extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          feedpost(username : myfeeddata[index]["username"], url : myfeeddata[index]["url"])),
+                                          feedpost(dp : myfeeddata[0]["url"], username : myfeeddata[index+1]["username"], url : myfeeddata[index+1]["url"])),
                                 );
                               },
                               child: Container(
                                 child: index%22==2 || index.isOdd && index%11==0 ? Stack(fit: StackFit.expand,
                                   children: [
-                                    Image.network(myfeeddata[index]["url"],fit: BoxFit.cover,),
+                                    Image.network(myfeeddata[index+1]["url"],fit: BoxFit.cover,),
                                     Positioned(
                                         top: 7,
                                         right: 7,
@@ -99,7 +99,7 @@ class search_list extends StatelessWidget {
                                 width: 12.0,
                                 decoration: BoxDecoration(
                                   image: DecorationImage(
-                                    image: NetworkImage(myfeeddata[index]["url"]),
+                                    image: NetworkImage(myfeeddata[index+1]["url"]),
                                     fit: BoxFit.cover,
                                   ),
                                   shape: BoxShape.rectangle,

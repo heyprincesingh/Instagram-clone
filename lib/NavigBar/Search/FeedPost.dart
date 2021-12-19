@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class feedpost extends StatefulWidget {
+  final String? dp;
   final String? username;
   final String? url;
-  const feedpost({Key? key, this.username, this.url}) : super(key: key);
+  const feedpost({Key? key,this.dp, this.username, this.url}) : super(key: key);
 
   @override
   _feedpostState createState() => _feedpostState();
@@ -14,11 +15,12 @@ TransformationController controllerT = TransformationController();
 var initialControllerValue;
 
 class _feedpostState extends State<feedpost> {
+  bool save = false;
+  bool like = false;
+  bool follow = false;
   @override
   Widget build(BuildContext context) {
     var device = MediaQuery.of(context).size;
-    bool save = false;
-    bool like = false;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
@@ -58,13 +60,26 @@ class _feedpostState extends State<feedpost> {
                         ),
                         Row(
                           children: [
-                            Container(
-                              child: Center(child: Text("Follow",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15),)),
-                              width: 70,
-                              height: 30,
-                              decoration: BoxDecoration(
-                                color: Colors.blue,
-                                borderRadius: BorderRadius.all(Radius.circular(6)),
+                            GestureDetector(
+                              onTap: (){ setState(() {
+                                follow = !follow;
+                              }); },
+                              child: follow ? Container(
+                                child: Center(child: Text("Following",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15),)),
+                                width: 90,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.white),
+                                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                                ),
+                              ) : Container(
+                                child: Center(child: Text("Follow",style: TextStyle(fontWeight: FontWeight.w600,fontSize: 15),)),
+                                width: 70,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.all(Radius.circular(6)),
+                                ),
                               ),
                             ),
                             IconButton(onPressed: null, icon: Icon(Icons.more_vert,color: Colors.white,))
@@ -92,7 +107,7 @@ class _feedpostState extends State<feedpost> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [IconButton(
-                              icon: like == true ? Icon(FontAwesomeIcons.solidHeart,color: Colors.red,) : Icon(FontAwesomeIcons.heart),
+                              icon: like ? Icon(FontAwesomeIcons.solidHeart,color: Colors.red,) : Icon(FontAwesomeIcons.heart),
                               onPressed: ()=> setState(() => like = !like)
                           ),
                             SizedBox(
@@ -138,7 +153,7 @@ class _feedpostState extends State<feedpost> {
                               shape: BoxShape.circle,
                               image: DecorationImage(
                                   fit: BoxFit.fitWidth,
-                                  image: NetworkImage("${widget.url}")
+                                  image: NetworkImage("${widget.dp}")
                               )
                           ),
                         ),

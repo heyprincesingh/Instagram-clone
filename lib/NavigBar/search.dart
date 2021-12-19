@@ -6,11 +6,6 @@ class search extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: search_list(),
-      ),
-    );
+    return search_list();
   }
 }
-
