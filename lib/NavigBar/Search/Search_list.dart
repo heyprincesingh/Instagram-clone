@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:instagram/NavigBar/Search/FeedPost.dart';
 
 class search_list extends StatelessWidget {
   const search_list({Key? key}) : super(key: key);
@@ -73,26 +74,38 @@ class search_list extends StatelessWidget {
                             crossAxisSpacing: 2,
                             mainAxisSpacing: 2,
                             itemCount: length3x3,
-                            itemBuilder: (context,index) {
-                          if(index%22==2 || index.isOdd && index%11==0){
-                             return Container(
-                              child: Stack(fit: StackFit.expand,
-                                children: [
-                                  Image.network(myfeeddata[index]["url"],fit: BoxFit.cover,),
-                                  Positioned(
-                                      top: 7,
-                                      right: 7,
-                                      child: Image.network("https://img.icons8.com/ios-filled/500/instagram-reel.png",
-                                        color: Colors.white,
-                                        width: 30,height: 30,))
-                                ],
-                              )
-                            );
-                          }
-                          else{
-                            return Image.network(myfeeddata[index]["url"],fit: BoxFit.cover,);
-                          }
-                            },
+                            itemBuilder: (context,index) => GestureDetector(
+                              onTap: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          feedpost(username : myfeeddata[index]["username"], url : myfeeddata[index]["url"])),
+                                );
+                              },
+                              child: Container(
+                                child: index%22==2 || index.isOdd && index%11==0 ? Stack(fit: StackFit.expand,
+                                  children: [
+                                    Image.network(myfeeddata[index]["url"],fit: BoxFit.cover,),
+                                    Positioned(
+                                        top: 7,
+                                        right: 7,
+                                        child: Image.network("https://img.icons8.com/ios-filled/500/instagram-reel.png",
+                                          color: Colors.white,
+                                          width: 30,height: 30,))
+                                  ],
+                                ) : null,
+                                height: 12.0,
+                                width: 12.0,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: NetworkImage(myfeeddata[index]["url"]),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  shape: BoxShape.rectangle,
+                                ),
+                              ),
+                            ),
                       ),
                     )
                   ],
