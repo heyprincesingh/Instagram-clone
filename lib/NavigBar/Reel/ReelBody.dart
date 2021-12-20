@@ -32,6 +32,7 @@ class _reelbodyState extends State<reelbody> {
         }
         else{
           return Swiper(
+            loop: false,
             itemBuilder: (BuildContext context,int index){
               return Stack(
                 //  fit: StackFit.expand,
@@ -102,7 +103,7 @@ class _reelbodyState extends State<reelbody> {
                         children: [
                           Icon(Icons.music_note_rounded,size: 18),
                           SizedBox(width: 5),
-                          Text(myreeldata[index]["song"],style: TextStyle(fontSize: 16),)
+                          Text(myreeldata[index]["song"],style: TextStyle(fontSize: 14),)
                         ],
                       )
                   ),
