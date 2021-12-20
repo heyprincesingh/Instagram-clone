@@ -73,7 +73,7 @@ class search_list extends StatelessWidget {
                             crossAxisCount: 3,
                             crossAxisSpacing: 2,
                             mainAxisSpacing: 2,
-                            itemCount: length3x3,
+                            itemCount: length3x3 - 1,
                             itemBuilder: (context,index) => GestureDetector(
                               onTap: (){
                                 Navigator.push(
