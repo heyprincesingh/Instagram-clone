@@ -21,43 +21,43 @@ class _NavbarState extends State<Navbar> {
     return Scaffold(
       body: files[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-      showSelectedLabels: false,
-      type: BottomNavigationBarType.fixed,
-      currentIndex: _currentIndex,
-      iconSize: 35,
-      selectedItemColor: Colors.white,
-      unselectedItemColor: Colors.white24,
-      items: [
-        BottomNavigationBarItem(
-            activeIcon: Icon(Icons.home_filled,),
-            icon: Icon(Icons.home_outlined),
-            title: Text("")
-        ),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            title: Text("")
-        ),
-        BottomNavigationBarItem(
-            activeIcon: Image.network("https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/instagram-reels.png",
-              color: Colors.white,
-              width: 26,height: 26,),
-            icon: Image.network("https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/instagram-reels.png",
-              color: Colors.white24,
-              width: 26,height: 26,),
-            title: Text("")
-        ),
-        BottomNavigationBarItem(activeIcon: Icon(Icons.favorite),
-            icon: Icon(Icons.favorite_border_outlined),
-            title: Text("")
-        ),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-        /*CircleAvatar(
+        showSelectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        currentIndex: _currentIndex,
+        iconSize: 35,
+        selectedItemColor: Colors.white,
+        unselectedItemColor: Colors.white24,
+        items: [
+          BottomNavigationBarItem(
+              activeIcon: Icon(Icons.home_filled,),
+              icon: Icon(Icons.home_outlined),
+              title: Text("")
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.search),
+              title: Text("")
+          ),
+          BottomNavigationBarItem(
+              activeIcon: Image.network("https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/instagram-reels.png",
+                color: Colors.white,
+                width: 26,height: 26,),
+              icon: Image.network("https://uxwing.com/wp-content/themes/uxwing/download/10-brands-and-social-media/instagram-reels.png",
+                color: Colors.white24,
+                width: 26,height: 26,),
+              title: Text("")
+          ),
+          BottomNavigationBarItem(activeIcon: Icon(Icons.favorite),
+              icon: Icon(Icons.favorite_border_outlined),
+              title: Text("")
+          ),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              /*CircleAvatar(
               radius: 18,
               backgroundImage: AssetImage("images/profile.jpg"),
             ),*/
-            title: Text("")
-        ),
+              title: Text("")
+          ),
         ],
         backgroundColor: Colors.black,
         elevation: 20,
