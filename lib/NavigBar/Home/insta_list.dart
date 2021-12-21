@@ -81,7 +81,8 @@ class _instabodyState extends State<instabody> {
                       children: [
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [IconButton(
+                          children: [
+                            IconButton(
                             icon: like ? Icon(FontAwesomeIcons.solidHeart,color: Colors.red,) : Icon(FontAwesomeIcons.heart),
                             onPressed: ()=> setState(() => like = !like)
                           ),
