@@ -69,8 +69,11 @@ class _instabodyState extends State<instabody> {
                       ],
                     ),
                   ),
-                  Container(
-                    child: Image.network(mydata[index-1]["post"]["link"],fit: BoxFit.cover,),
+                  GestureDetector(
+                    onDoubleTap: () => setState(() => like = !like),
+                    child: Container(
+                      child: Image.network(mydata[index-1]["post"]["link"],fit: BoxFit.cover,),
+                    ),
                   ),
                   Padding(padding: const EdgeInsets.only(left : 2.0),
                     child: Row(

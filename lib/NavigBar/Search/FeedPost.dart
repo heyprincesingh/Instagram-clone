@@ -88,17 +88,21 @@ class _feedpostState extends State<feedpost> {
                       ],
                     ),
                   ),
-                  InteractiveViewer(
-                    minScale: 0.5,
-                    maxScale: 3,
-                    transformationController: controllerT,
-                    onInteractionStart: (details){
-                      initialControllerValue = controllerT.value;
-                    },
-                    onInteractionEnd: (details){
-                      controllerT.value = initialControllerValue;
-                    },
-                    child: Image.network("${widget.url}",fit: BoxFit.fitHeight,),
+                  GestureDetector(
+                    onDoubleTap: () => setState(() => like = !like),
+                    child: InteractiveViewer
+                      (
+                      minScale: 0.5,
+                      maxScale: 3,
+                      transformationController: controllerT,
+                      onInteractionStart: (details){
+                        initialControllerValue = controllerT.value;
+                      },
+                      onInteractionEnd: (details){
+                        controllerT.value = initialControllerValue;
+                      },
+                      child: Image.network("${widget.url}",fit: BoxFit.fitHeight,),
+                    ),
                   ),
                   Padding(padding: const EdgeInsets.only(left : 2.0),
                     child: Row(
