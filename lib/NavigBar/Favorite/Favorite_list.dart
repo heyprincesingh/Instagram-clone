@@ -16,9 +16,9 @@ class favorite_list extends StatelessWidget {
           future: DefaultAssetBundle.of(context).loadString("images/favorite.json"),
           builder: (context,snapshot){
             var mydata = json.decode(snapshot.data.toString());
-            final today = mydata[0]?.length;
-            final yesterday = mydata[1]?.length;
-            final week = mydata[2]?.length;
+            final today = mydata?[0].length;
+            final yesterday = mydata?[1].length;
+            final week = mydata?[2].length;
             if(mydata == null){
               return Center(
                 child: Text(
